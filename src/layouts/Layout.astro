@@ -1,0 +1,27 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "RentGear — Profesjonalny sprzęt na plan",
+  description = "Aparaty, drony, oświetlenie i dźwięk dla produkcji filmowych, agencji i twórców. Wypożycz sprzęt filmowy w Warszawie z odbiorem tego samego dnia.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-bg text-white antialiased">
+    <slot />
+  </body>
+</html>
