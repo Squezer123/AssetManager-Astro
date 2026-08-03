@@ -13,6 +13,145 @@ const navLinks = [
   { label: "O nas", href: "/o-nas" },
   { label: "Kontakt", href: "/kontakt" },
 ];
+
+const trustPoints = [
+  {
+    title: "Sprzęt sprawdzony",
+    description: "Każdy zestaw testowany i czyszczony przed wydaniem.",
+    icon: "shield",
+  },
+  {
+    title: "Dostawa na plan",
+    description: "Kurier w całej Polsce lub odbiór osobisty w Warszawie.",
+    icon: "truck",
+  },
+  {
+    title: "Rezerwacja online",
+    description: "Wybierasz daty, my trzymamy sprzęt do godziny odbioru.",
+    icon: "zap",
+  },
+];
+
+const categories = [
+  {
+    title: "Aparaty",
+    description: "Korpusy pełnoklatkowe, kamery kinowe i obiektywy.",
+    icon: "camera",
+    href: "/katalog/aparaty",
+    active: true,
+  },
+  {
+    title: "Drony",
+    description: "Zestawy FPV i drony filmowe z gimbalem.",
+    icon: "drone",
+    href: "/katalog/drony",
+  },
+  {
+    title: "Oświetlenie",
+    description: "Panele LED, softboxy i statywy oświetleniowe.",
+    icon: "light",
+    href: "/katalog/oswietlenie",
+  },
+  {
+    title: "Mikrofony",
+    description: "Systemy bezprzewodowe, shotguny i rejestratory.",
+    icon: "mic",
+    href: "/katalog/mikrofony",
+  },
+  {
+    title: "Akcesoria",
+    description: "Statywy, karty, akumulatory i okablowanie.",
+    icon: "accessories",
+    href: "/katalog/akcesoria",
+  },
+];
+
+const icons: Record<string, string> = {
+  shield:
+    '<path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/>',
+  truck:
+    '<path d="M1 3h13v13H1z"/><path d="M14 8h4l3 3v5h-7V8Z"/><circle cx="5.5" cy="18.5" r="1.5"/><circle cx="17.5" cy="18.5" r="1.5"/>',
+  zap: '<path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/>',
+  camera:
+    '<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2Z"/><circle cx="12" cy="13" r="4"/>',
+  drone:
+    '<circle cx="4" cy="4" r="2"/><circle cx="20" cy="4" r="2"/><circle cx="4" cy="20" r="2"/><circle cx="20" cy="20" r="2"/><path d="M6 6l4 4M18 6l-4 4M6 18l4-4M18 18l-4-4"/><circle cx="12" cy="12" r="2.5"/>',
+  light:
+    '<path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2Z"/>',
+  mic: '<path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v4"/>',
+  accessories:
+    '<path d="M6 3v18M18 3v18"/><path d="M4 8h4M16 8h4M4 16h4M16 16h4"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+};
+
+const products = [
+  {
+    category: "Aparaty",
+    name: "Canon EOS R5 C",
+    description: "Hybryda 8K RAW do produkcji filmowych i sesji zdjęciowych.",
+    price: "249",
+    stock: 4,
+    image: "/images/products/canon-eos-r5c.jpg",
+    href: "/katalog/aparaty/canon-eos-r5c",
+  },
+  {
+    category: "Drony",
+    name: "DJI Mavic 3 Pro",
+    description: "Trzy obiektywy Hasselblad i 43 minuty lotu.",
+    price: "219",
+    stock: 3,
+    image: "/images/products/dji-mavic-3-pro.jpg",
+    href: "/katalog/drony/dji-mavic-3-pro",
+  },
+  {
+    category: "Oświetlenie",
+    name: "Aputure 600D Pro",
+    description: "Mocne światło punktowe do dużych planów zdjęciowych.",
+    price: "169",
+    stock: 4,
+    image: "/images/products/aputure-600d-pro.jpg",
+    href: "/katalog/oswietlenie/aputure-600d-pro",
+  },
+  {
+    category: "Mikrofony",
+    name: "Rode Wireless PRO",
+    description: "Dwa nadajniki z zapisem 32-bit float i timecodem.",
+    price: "69",
+    stock: 10,
+    image: "/images/products/rode-wireless-pro.jpg",
+    href: "/katalog/mikrofony/rode-wireless-pro",
+  },
+];
+
+const blogPosts = [
+  {
+    date: "24 lipca 2026",
+    author: "Marta Wilk",
+    title: "Jak wybrać aparat do pierwszej produkcji filmowej",
+    excerpt:
+      "Pełna klatka czy Super 35? Podpowiadamy, na co patrzeć, zanim zarezerwujesz korpus na plan.",
+    image: "/images/blog/aparat-do-produkcji.jpg",
+    href: "/blog/jak-wybrac-aparat",
+  },
+  {
+    date: "16 lipca 2026",
+    author: "Kamil Nowak",
+    title: "Drony w produkcji reklamowej — przepisy i praktyka",
+    excerpt:
+      "Jakie uprawnienia są potrzebne, jak planować przeloty i co spakować na plan zdjęciowy.",
+    image: "/images/blog/drony-produkcja-reklamowa.jpg",
+    href: "/blog/drony-w-produkcji-reklamowej",
+  },
+  {
+    date: "8 lipca 2026",
+    author: "Ewa Zając",
+    title: "Oświetlenie trzypunktowe w praktyce",
+    excerpt:
+      "Key, fill i back light — prosty schemat, który ratuje każdy wywiad nagrywany w biurze.",
+    image: "/images/blog/oswietlenie-trzypunktowe.jpg",
+    href: "/blog/oswietlenie-trzypunktowe",
+  },
+];
 ---
 
 <Layout>
@@ -180,6 +319,196 @@ const navLinks = [
           }
         </dl>
       </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1440px] px-6 py-16 lg:px-10">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        trustPoints.map((point) => (
+          <div class="group rounded-2xl border border-border bg-bg-elevated p-6 transition-all duration-300 hover:border-accent hover:shadow-[0_0_0_1px_rgba(45,212,191,0.15),0_0_24px_rgba(45,212,191,0.12)]">
+            <span
+              class="flex h-11 w-11 items-center justify-center rounded-full bg-accent/10 text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-bg"
+              set:html={`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${icons[point.icon]}</svg>`}
+            />
+            <h3 class="mt-4 text-base font-semibold text-white">
+              {point.title}
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">
+              {point.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1440px] px-6 pb-24 lg:px-10">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          Kategorie sprzętu
+        </h2>
+        <p class="mt-2 text-muted">
+          Wybierz kategorię i sprawdź dostępność na wybrany termin.
+        </p>
+      </div>
+      <a
+        href="/katalog"
+        class="text-sm font-semibold text-accent transition-colors hover:text-accent-hover"
+      >
+        Cały katalog
+      </a>
+    </div>
+
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+      {
+        categories.map((category) => (
+          <a
+            href={category.href}
+            class:list={[
+              "group rounded-2xl border p-6 transition-all duration-300",
+              category.active
+                ? "border-accent bg-bg-elevated shadow-[0_0_0_1px_rgba(45,212,191,0.15),0_0_24px_rgba(45,212,191,0.12)]"
+                : "border-border bg-bg-elevated hover:border-accent hover:shadow-[0_0_0_1px_rgba(45,212,191,0.15),0_0_24px_rgba(45,212,191,0.12)]",
+            ]}
+          >
+            <span
+              class:list={[
+                "flex h-11 w-11 items-center justify-center rounded-full transition-colors duration-300",
+                category.active
+                  ? "bg-accent text-bg"
+                  : "bg-accent/10 text-accent group-hover:bg-accent group-hover:text-bg",
+              ]}
+              set:html={`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${icons[category.icon]}</svg>`}
+            />
+            <h3 class="mt-5 text-base font-semibold text-white">
+              {category.title}
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">
+              {category.description}
+            </p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1440px] px-6 pb-24 lg:px-10">
+    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+      Najczęściej wypożyczane
+    </h2>
+
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        products.map((product) => (
+          <div class="group overflow-hidden rounded-2xl border border-border bg-bg-elevated transition-all duration-300 hover:border-accent hover:shadow-[0_0_0_1px_rgba(45,212,191,0.15),0_0_28px_rgba(45,212,191,0.15)]">
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img
+                src={product.image}
+                alt={product.name}
+                loading="lazy"
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <span class="absolute left-3 top-3 rounded-full bg-bg/80 px-3 py-1 text-xs font-medium text-accent backdrop-blur">
+                Dostępne: {product.stock} szt.
+              </span>
+            </div>
+
+            <div class="p-5">
+              <p class="text-xs font-semibold uppercase tracking-wide text-accent">
+                {product.category}
+              </p>
+              <h3 class="mt-1.5 text-lg font-semibold text-white">
+                {product.name}
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted">
+                {product.description}
+              </p>
+
+              <p class="mt-4 text-2xl font-bold text-white">
+                {product.price} zł
+                <span class="text-sm font-normal text-muted"> / doba</span>
+              </p>
+
+              <div class="mt-4 flex items-center gap-2.5">
+                <a
+                  href={product.href}
+                  class="flex-1 rounded-full border border-border py-2.5 text-center text-sm font-semibold text-white transition-colors hover:border-muted"
+                >
+                  Szczegóły
+                </a>
+                <button
+                  type="button"
+                  aria-label={`Dodaj ${product.name} do koszyka`}
+                  class="flex items-center gap-1.5 rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-bg transition-colors hover:bg-accent-hover"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    set:html={icons.plus}
+                  />
+                  Do koszyka
+                </button>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1440px] px-6 pb-24 lg:px-10">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          Z bloga
+        </h2>
+        <p class="mt-2 text-muted">Praktyczna wiedza z planu zdjęciowego.</p>
+      </div>
+      <a
+        href="/blog"
+        class="text-sm font-semibold text-accent transition-colors hover:text-accent-hover"
+      >
+        Wszystkie wpisy
+      </a>
+    </div>
+
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        blogPosts.map((post) => (
+          <a
+            href={post.href}
+            class="group overflow-hidden rounded-2xl border border-border bg-bg-elevated transition-all duration-300 hover:border-accent hover:shadow-[0_0_0_1px_rgba(45,212,191,0.15),0_0_28px_rgba(45,212,191,0.15)]"
+          >
+            <div class="aspect-video overflow-hidden">
+              <img
+                src={post.image}
+                alt={post.title}
+                loading="lazy"
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div class="p-5">
+              <p class="text-sm text-muted">
+                {post.date} · {post.author}
+              </p>
+              <h3 class="mt-2 text-lg font-semibold leading-snug text-white">
+                {post.title}
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted">
+                {post.excerpt}
+              </p>
+            </div>
+          </a>
+        ))
+      }
     </div>
   </section>
 </Layout>
