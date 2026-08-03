@@ -10,6 +10,23 @@ const {
   title = "RentGear — Profesjonalny sprzęt na plan",
   description = "Aparaty, drony, oświetlenie i dźwięk dla produkcji filmowych, agencji i twórców. Wypożycz sprzęt filmowy w Warszawie z odbiorem tego samego dnia.",
 } = Astro.props;
+
+const currentYear = new Date().getFullYear();
+
+const footerIcons: Record<string, string> = {
+  pin: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+  phone:
+    '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92Z"/>',
+  mail: '<path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>',
+};
+
+const serviceLinks = [
+  { label: "Katalog sprzętu", href: "/katalog" },
+  { label: "Blog", href: "/blog" },
+  { label: "O nas", href: "/o-nas" },
+  { label: "Twoja rezerwacja", href: "/rezerwacja" },
+];
 ---
 
 <!doctype html>
@@ -23,5 +40,175 @@ const {
   </head>
   <body class="bg-bg text-white antialiased">
     <slot />
+
+    <footer class="border-t border-border">
+      <div
+        class="mx-auto grid max-w-[1440px] gap-10 px-6 py-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-10"
+      >
+        <div>
+          <a href="/" class="flex items-center gap-2.5">
+            <span
+              class="flex h-9 w-9 items-center justify-center rounded-full bg-accent/15 text-accent"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 2a10 10 0 0 1 6.5 17.5"></path>
+                <path d="m9 15 3-3 3 3"></path>
+              </svg>
+            </span>
+            <span class="text-lg font-semibold tracking-tight">RentGear</span
+            >
+          </a>
+          <p class="mt-4 max-w-xs text-sm leading-relaxed text-muted">
+            Wypożyczalnia sprzętu foto, wideo i audio dla produkcji
+            filmowych, agencji i twórców.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-white">
+            Serwis
+          </h3>
+          <ul class="mt-4 space-y-3">
+            {
+              serviceLinks.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    class="text-sm text-muted transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-white">
+            Kontakt
+          </h3>
+          <ul class="mt-4 space-y-3">
+            <li class="flex items-start gap-2.5 text-sm text-muted">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="mt-0.5 shrink-0 text-accent"
+                set:html={footerIcons.pin}
+              />
+              ul. Filmowa 12, 00-712 Warszawa
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-muted">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="shrink-0 text-accent"
+                set:html={footerIcons.phone}
+              />
+              <a href="tel:+48221234567" class="transition-colors hover:text-white"
+                >+48 22 123 45 67</a
+              >
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-muted">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="shrink-0 text-accent"
+                set:html={footerIcons.mail}
+              />
+              <a
+                href="mailto:kontakt@rentgear.pl"
+                class="transition-colors hover:text-white">kontakt@rentgear.pl</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs font-semibold uppercase tracking-wide text-white">
+            Godziny odbioru
+          </h3>
+          <ul class="mt-4 space-y-3">
+            <li class="flex items-center gap-2.5 text-sm text-muted">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="shrink-0 text-accent"
+                set:html={footerIcons.clock}
+              />
+              Pon.–pt. 8:00–20:00
+            </li>
+            <li class="flex items-center gap-2.5 text-sm text-muted">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="shrink-0 text-accent"
+                set:html={footerIcons.clock}
+              />
+              Sobota 9:00–15:00
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-border">
+        <div
+          class="mx-auto flex max-w-[1440px] flex-col gap-3 px-6 py-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between lg:px-10"
+        >
+          <p>© {currentYear} RentGear. Wszystkie prawa zastrzeżone.</p>
+          <p class="flex items-center gap-2">
+            <a href="/regulamin" class="transition-colors hover:text-white"
+              >Regulamin</a
+            >
+            <span aria-hidden="true">·</span>
+            <a
+              href="/polityka-prywatnosci"
+              class="transition-colors hover:text-white"
+              >Polityka prywatności</a
+            >
+          </p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
