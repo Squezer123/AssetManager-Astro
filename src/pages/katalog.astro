@@ -1,0 +1,662 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+
+const products = [
+  {
+    id: 1,
+    name: 'Canon EOS R5 C',
+    category: 'APARATY',
+    description: 'Hybrydą 8K RAW do produkcji filmowych i sesji zdjęciowych.',
+    price: 249,
+    availability: '4 szt.',
+    image: 'https://via.placeholder.com/300x300?text=Canon+EOS+R5+C'
+  },
+  {
+    id: 2,
+    name: 'Sony A7S III',
+    category: 'APARATY',
+    description: 'Legendarna czułość ISO do zdjęć nocnych i reportażu.',
+    price: 189,
+    availability: '6 szt.',
+    image: 'https://via.placeholder.com/300x300?text=Sony+A7S+III'
+  },
+  {
+    id: 3,
+    name: 'Sony FX3 Cinema Line',
+    category: 'APARATY',
+    description: 'Kompaktowa kamera kinowa z aktywną stabilizacją.',
+    price: 279,
+    availability: '2 szt.',
+    image: 'https://via.placeholder.com/300x300?text=Sony+FX3'
+  },
+  {
+    id: 4,
+    name: 'DJI Air 3S',
+    category: 'DRONY',
+    description: 'Profesjonalny dron z 48MP kamerą i 46 min lotu.',
+    price: 199,
+    availability: '3 szt.',
+    image: 'https://via.placeholder.com/300x300?text=DJI+Air+3S'
+  },
+  {
+    id: 5,
+    name: 'Rode Wireless GO II',
+    category: 'MIKROFONY',
+    description: 'Mikrofon bezprzewodowy z zasięgiem do 200m.',
+    price: 89,
+    availability: '8 szt.',
+    image: 'https://via.placeholder.com/300x300?text=Rode+Wireless+GO'
+  },
+  {
+    id: 6,
+    name: 'Neewer LED Ring Light',
+    category: 'OŚWIETLENIE',
+    description: '18\" oświetlenie pierścieniowe RGB z regulacją mocy.',
+    price: 149,
+    availability: '5 szt.',
+    image: 'https://via.placeholder.com/300x300?text=Neewer+Ring+Light'
+  }
+];
+
+const categories = [
+  { label: 'Wszystkie', value: 'all', active: true },
+  { label: 'Aparaty', value: 'aparaty' },
+  { label: 'Drony', value: 'drony' },
+  { label: 'Oświetlenie', value: 'oswietlenie' },
+  { label: 'Mikrofony', value: 'mikrofony' },
+  { label: 'Akcesoria', value: 'akcesoria' }
+];
+---
+
+<Layout title="Katalog sprzętu">
+  <Navbar active="katalog" />
+  <main class="container">
+    <div class="breadcrumb">
+      <a href="/">Start</a>
+      <span>/</span>
+      <span>Katalog</span>
+    </div>
+
+    <div class="header-section">
+      <h1>Katalog sprzętu</h1>
+      <p>15 pozycji gotowych do wynajmu. Ceny podane za dobę wynajmu, dostępność aktualizowana na bieżąco.</p>
+    </div>
+
+    <div class="catalog-wrapper">
+      <aside class="sidebar">
+        <div class="filters-header">
+          <svg class="filter-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <h2>Filtry</h2>
+        </div>
+
+        <div class="filter-section">
+          <label class="filter-label">SZUKAJ</label>
+          <div class="search-box">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input 
+              type="text" 
+              placeholder="np. Sony, dron, mikrofon" 
+              class="search-input"
+            />
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <label class="filter-label">KATEGORIA</label>
+          <div class="category-buttons">
+            {categories.map(cat => (
+              <button 
+                class={`category-btn ${cat.active ? 'active' : ''}`}
+                data-category={cat.value}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <label class="filter-label">CENA DO 300 ZŁ / DOBA</label>
+          <input type="range" min="0" max="300" value="300" class="price-slider" />
+        </div>
+
+        <div class="filter-section">
+          <label class="filter-label">DOSTĘPNOŚĆ</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" name="availability" value="available" />
+              <span>Tylko dostępne od ręki</span>
+            </label>
+          </div>
+        </div>
+
+        <button class="clear-filters">Wyczyść filtry</button>
+      </aside>
+
+      <section class="main-content">
+        <div class="results-header">
+          <p class="results-count">Znaleziono 15 pozycji</p>
+        </div>
+
+        <div class="products-grid">
+          {products.map(product => (
+            <article class="product-card">
+              <div class="product-image-wrapper">
+                <img 
+                  src={product.image} 
+                  alt={product.name}
+                  class="product-image"
+                />
+                <div class="availability-badge">
+                  Dostępne: {product.availability}
+                </div>
+              </div>
+              
+              <div class="product-info">
+                <span class="product-category">{product.category}</span>
+                <h3 class="product-name">{product.name}</h3>
+                <p class="product-description">{product.description}</p>
+                
+                <div class="product-footer">
+                  <div class="price-section">
+                    <span class="price">{product.price} zł</span>
+                    <span class="period">/ doba</span>
+                  </div>
+                  
+                  <div class="product-actions">
+                    <button class="btn-details">Szczegóły</button>
+                    <button class="btn-cart">
+                      <span class="cart-icon">+</span>
+                      Do koszyka
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  :root {
+    --color-dark: #0f172a;
+    --color-darker: #09111f;
+    --color-accent: #00d4aa;
+    --color-accent-hover: #00b894;
+    --color-text: #e4e4e7;
+    --color-text-muted: #a1a1a1;
+    --color-border: #27272a;
+    --color-card-bg: #1e293b;
+  }
+
+  main {
+    background-color: var(--color-dark);
+    color: var(--color-text);
+    min-height: calc(100vh - 70px);
+    padding: 2rem 0;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .breadcrumb {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-accent);
+  }
+
+  .header-section {
+    margin-bottom: 3rem;
+  }
+
+  .header-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .header-section p {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .catalog-wrapper {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+  }
+
+  .sidebar {
+    background-color: var(--color-card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    height: fit-content;
+    position: sticky;
+    top: 2rem;
+  }
+
+  .filters-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .filters-header h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .filter-icon {
+    color: var(--color-accent);
+  }
+
+  .filter-section {
+    margin-bottom: 1.75rem;
+  }
+
+  .filter-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  /* Search */
+  .search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    color: var(--color-text-muted);
+    pointer-events: none;
+  }
+
+  .search-input {
+    width: 100%;
+    background-color: var(--color-dark);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 0.625rem 0.75rem 0.625rem 2.25rem;
+    color: var(--color-text);
+    font-size: 0.875rem;
+    transition: border-color 0.2s;
+  }
+
+  .search-input::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+  }
+
+  /* Category Buttons */
+  .category-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .category-btn {
+    background-color: var(--color-dark);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0.625rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+  }
+
+  .category-btn:hover {
+    border-color: var(--color-accent);
+  }
+
+  .category-btn.active {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-dark);
+    font-weight: 600;
+  }
+
+  .price-slider {
+    width: 100%;
+    height: 4px;
+    background: var(--color-border);
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .price-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .price-slider::-webkit-slider-thumb:hover {
+    background: var(--color-accent-hover);
+  }
+
+  .price-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--color-accent);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .price-slider::-moz-range-thumb:hover {
+    background: var(--color-accent-hover);
+  }
+
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    accent-color: var(--color-accent);
+    cursor: pointer;
+  }
+
+  .clear-filters {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    padding: 0.625rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 1rem;
+  }
+
+  .clear-filters:hover {
+    border-color: var(--color-text-muted);
+    color: var(--color-text);
+  }
+
+  .main-content {
+    flex: 1;
+  }
+
+  .results-header {
+    margin-bottom: 2rem;
+  }
+
+  .results-count {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    background-color: var(--color-card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 212, 170, 0.1);
+  }
+
+  .product-image-wrapper {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background-color: var(--color-dark);
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .availability-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+    padding: 0.375rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .product-info {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .product-category {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .product-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .product-description {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+
+  .price-section {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+  }
+
+  .price {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+
+  .period {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .product-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn-details {
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-details:hover {
+    border-color: var(--color-text);
+  }
+
+  .btn-cart {
+    background-color: var(--color-accent);
+    border: none;
+    color: var(--color-dark);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .btn-cart:hover {
+    background-color: var(--color-accent-hover);
+  }
+
+  .cart-icon {
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .catalog-wrapper {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+      position: static;
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header-section h1 {
+      font-size: 2rem;
+    }
+
+    .products-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .sidebar {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .filter-section:last-child {
+      grid-column: 1 / -1;
+    }
+
+    .clear-filters {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .products-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.category-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  document.querySelector('.clear-filters')?.addEventListener('click', () => {
+    document.querySelectorAll('.category-btn').forEach((btn, idx) => {
+      btn.classList.toggle('active', idx === 0);
+    });
+    document.querySelector('.search-input').value = '';
+    document.querySelector('.price-slider').value = 300;
+    document.querySelector('input[type="checkbox"]').checked = false;
+  });
+</script>
